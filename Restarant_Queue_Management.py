@@ -43,10 +43,13 @@ while True:
 
         if 2 >= amount >= 1:
             q = SmallQueue(count_a, name, phone, amount)
+            count_a += 1
         elif 4 >= amount > 2:
             q = MediumQueue(count_b, name, phone, amount)
+            count_b += 1
         elif amount > 4:
             q = LargeQueue(count_c, name, phone, amount)
+            count_c += 1
 
         with open("queue.txt", "a", encoding="utf-8") as f:
             f.write(q.strfile() + "\n")
