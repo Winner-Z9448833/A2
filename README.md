@@ -54,4 +54,4 @@
 2. **ดาวน์โหลดโปรแกรม**: ดาวน์โหลดไฟล์โค้ด หรือดาวน์โหลดไฟล์ ZIP จาก Releases
 3. **การรันโปรแกรม**: เปิด Terminal / Command Prompt แล้วพิมพ์คำสั่ง:
 
-[📥 คลิกที่นี่เพื่อดาวน์โหลดไฟล์โปรแกรม (ZIP)](https://github.com/Winner-Z9448833/A2/blob/main/FOR_DOWNLOAD.zip)
+[📥 คลิกที่นี่เพื่อดาวน์โหลดไฟล์โปรแกรม (ZIP)](https://github.com/Winner-Z9448833/A2/raw/main/FOR_DOWNLOAD.zip)
