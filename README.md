@@ -56,5 +56,5 @@
 
 [📥 คลิกที่นี่เพื่อดาวน์โหลดไฟล์โปรแกรม (ZIP)](https://github.com/Winner-Z9448833/A2/raw/main/FOR_DOWNLOAD.zip)
 ### 📦 Download & Release
-* **ล่าสุด:** [📥 ดาวน์โหลดเวอร์ชัน v1.0.0 (FOR_DOWNLOAD.zip)](https://github.com/Winner-Z9448833/A2/releases/tag/v0.0.1)
+* **ล่าสุด:** [📥 ดาวน์โหลดเวอร์ชัน v0.0.1 (FOR_DOWNLOAD.zip)](https://github.com/Winner-Z9448833/A2/releases/tag/v0.0.1)
 * หรือดู Release ทั้งหมดได้ที่ [All Releases](https://github.com/Winner-Z9448833/A2/releases)[cite: 1]
