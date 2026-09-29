@@ -30,6 +30,26 @@ count_a = 1
 count_b = 1
 count_c = 1
 
+try:
+    with open("queue.txt", "r", encoding="utf-8") as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.strip():
+                data = line.strip().split("|")
+                q_no = data[0]
+                
+                prefix = q_no[0]         # ดึงหมวด A, B, C
+                num = int(q_no[1:])      # ดึงลำดับตัวเลข
+
+                if prefix == "A" and num >= count_a:
+                    count_a = num + 1
+                elif prefix == "B" and num >= count_b:
+                    count_b = num + 1
+                elif prefix == "C" and num >= count_c:
+                    count_c = num + 1
+except FileNotFoundError:
+    pass # ถ้ายังไม่มีไฟล์ ให้ใช้ค่าเริ่มต้น 1
+
 while True:
     print('=====Menu=====\n[1] New Queue\n[2] Next Queue\n[3] All queue\n[4] Cancel queue\n[0] Exit')
     menu = int(input('number: '))
