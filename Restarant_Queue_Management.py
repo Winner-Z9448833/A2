@@ -8,43 +8,34 @@ class QueueItem:
     def strfile(self):
         return f'{self.QueueNo}|{self.name}|{self.phone}|{self.party_size}'
 
-# คิวโต๊ะเล็ก
 class SmallQueue(QueueItem):
     def __init__(self, no, name, phone, party_size):
-        QueueNo = "A" + str(no)
-        super().__init__(QueueNo, name, phone, party_size)
+        super().__init__("A" + str(no), name, phone, party_size)
 
-# คิวโต๊ะกลาง
 class MediumQueue(QueueItem):
     def __init__(self, no, name, phone, party_size):
-        QueueNo = "B" + str(no)
-        super().__init__(QueueNo, name, phone, party_size)
+        super().__init__("B" + str(no), name, phone, party_size)
 
-# คิวโต๊ะใหญ่
 class LargeQueue(QueueItem):
     def __init__(self, no, name, phone, party_size):
-        QueueNo = "C" + str(no)
-        super().__init__(QueueNo, name, phone, party_size)
-
+        super().__init__("C" + str(no), name, phone, party_size)
 
 count_a = 1
 count_b = 1
 count_c = 1
-
-# Array2D ไว้เก็บข้อมูล
 queue_matrix = []
-# ป้องกัน error
+
+# โหลดข้อมูลเข้า 2D Array
 try:
     with open("queue.txt", "r", encoding="utf-8") as f:
-        lines = f.readlines()
-        for line in lines:
+        for line in f:
             if line.strip():
                 data = line.strip().split("|")
-                queue_matrix.append(data)  # เพิ่มข้อมูลแต่ละแถวเข้า 2D Array
+                queue_matrix.append(data)
                 
                 q_no = data[0]
-                prefix = q_no[0]        # ดึงชื่อต้น A, B, C
-                num = int(q_no[1:])     # ดึงลำดับตัวเลข
+                prefix = q_no[0]
+                num = int(q_no[1:])
 
                 if prefix == "A" and num >= count_a:
                     count_a = num + 1
@@ -53,13 +44,13 @@ try:
                 elif prefix == "C" and num >= count_c:
                     count_c = num + 1
 except FileNotFoundError:
-    pass # ถ้ายังไม่มีไฟล์ ให้ใช้ค่าเริ่มต้น 1
-#ส่วนของ loop รับเลข menu
+    pass
+
 while True:
     print('=====Menu=====\n[1] New Queue\n[2] Next Queue\n[3] All queue\n[4] Cancel queue\n[0] Exit')
     menu = input('number: ')
     if menu not in ('1','2','3','4','0'):
-        print('***menu not found***') 
+        print('***Menu not Found***')
     else:
         menu=int(menu)
     print('==============')
@@ -80,11 +71,9 @@ while True:
             q = LargeQueue(count_c, name, phone, amount)
             count_c += 1
 
-        # เพิ่มข้อมูลเข้าสู่ 2D Array (queue_matrix)
         new_row = [q.QueueNo, q.name, q.phone, str(q.party_size)]
         queue_matrix.append(new_row)
 
-        # บันทึกลงไฟล์
         with open("queue.txt", "a", encoding="utf-8") as f:
             f.write(q.strfile() + "\n")
 
@@ -94,13 +83,10 @@ while True:
         if len(queue_matrix) == 0:
             print("Queue Not Found\n")
         else:
-            
-            next_queue = queue_matrix.pop(0) # ดึงข้อมูลคิวแรกจาก 2D Array (แถวที่ 0)
-            
+            next_queue = queue_matrix.pop(0)
             print(f"-> Next Queue: {next_queue[0]}")
             print(f"   Name: {next_queue[1]} (Call: {next_queue[2]}, Amount: {next_queue[3]})\n")
 
-            # เขียนข้อมูลที่เหลือใน 2D Array กลับลงไปในไฟล์ใหม่
             with open("queue.txt", "w", encoding="utf-8") as f:
                 for row in queue_matrix:
                     f.write("|".join(row) + "\n")
@@ -109,8 +95,7 @@ while True:
         if len(queue_matrix) == 0:
             print("Queue not found\n")
         else:
-            print("===== All Queue (2D Array) =====")
-            # วนลูปแสดงข้อมูลจาก 2D Array โดยตรง
+            print("===== All Queue =====")
             for row in queue_matrix:
                 print(f"Queue: {row[0]} | Name: {row[1]} | Call: {row[2]} | Amount: {row[3]}")
             print("===========================\n")
@@ -123,8 +108,6 @@ while True:
         else:
             updated_matrix = []
             found = False
-            
-            # ค้นหาและกรองข้อมูลออกจาก 2D Array
             for row in queue_matrix:
                 if row[0].upper() == cancel:
                     found = True
@@ -133,7 +116,6 @@ while True:
                     
             if found:
                 queue_matrix = updated_matrix
-                # เขียนข้อมูลที่เหลือกลับลงไฟล์
                 with open("queue.txt", "w", encoding="utf-8") as f:
                     for row in queue_matrix:
                         f.write("|".join(row) + "\n")
