@@ -56,29 +56,30 @@ while True:
     print('==============')
 
     if menu == 1:
-        name = input('name: ')
-        phone = input('phone: ')
-        amount = int(input('amount: '))
-        print('==============')
+        try:
+            name = input('name: ')
+            phone = input('phone: ')
+            amount = int(input('amount: '))
+            print('==============')
 
-        if 2 >= amount >= 1:
-            q = SmallQueue(count_a, name, phone, amount)
-            count_a += 1
-        elif 4 >= amount > 2:
-            q = MediumQueue(count_b, name, phone, amount)
-            count_b += 1
-        elif amount > 4:
-            q = LargeQueue(count_c, name, phone, amount)
-            count_c += 1
+            if 2 >= amount >= 1:
+                q = SmallQueue(count_a, name, phone, amount)
+                count_a += 1
+            elif 4 >= amount > 2:
+                q = MediumQueue(count_b, name, phone, amount)
+                count_b += 1
+            elif amount > 4:
+                q = LargeQueue(count_c, name, phone, amount)
+                count_c += 1
+            new_row = [q.QueueNo, q.name, q.phone, str(q.party_size)]
+            queue_matrix.append(new_row)
 
-        new_row = [q.QueueNo, q.name, q.phone, str(q.party_size)]
-        queue_matrix.append(new_row)
+            with open("queue.txt", "a", encoding="utf-8") as f:
+                f.write(q.strfile() + "\n")
 
-        with open("queue.txt", "a", encoding="utf-8") as f:
-            f.write(q.strfile() + "\n")
-
-        print(f"Queue NO: {q.QueueNo}\n")
-
+            print(f"Queue NO: {q.QueueNo}\n")
+        except Exception as err:
+                    print(err)
     elif menu == 2:
         if len(queue_matrix) == 0:
             print("Queue Not Found\n")
