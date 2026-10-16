@@ -57,7 +57,11 @@ except FileNotFoundError:
 #ส่วนของ loop รับเลข menu
 while True:
     print('=====Menu=====\n[1] New Queue\n[2] Next Queue\n[3] All queue\n[4] Cancel queue\n[0] Exit')
-    menu = int(input('number: '))
+    menu = input('number: ')
+    if menu not in ('1','2','3','4','0'):
+        print('***menu not found***') 
+    else:
+        menu=int(menu)
     print('==============')
 
     if menu == 1:
@@ -90,8 +94,8 @@ while True:
         if len(queue_matrix) == 0:
             print("Queue Not Found\n")
         else:
-            # ดึงข้อมูลคิวแรกจาก 2D Array (แถวที่ 0)
-            next_queue = queue_matrix.pop(0) 
+            
+            next_queue = queue_matrix.pop(0) # ดึงข้อมูลคิวแรกจาก 2D Array (แถวที่ 0)
             
             print(f"-> Next Queue: {next_queue[0]}")
             print(f"   Name: {next_queue[1]} (Call: {next_queue[2]}, Amount: {next_queue[3]})\n")
